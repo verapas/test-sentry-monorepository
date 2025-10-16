@@ -1,0 +1,84 @@
+{
+  "name": "python-backend",
+  "$schema": "../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "./python-backend/python_backend",
+  "targets": {
+    "docs": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "pydoc-markdown -p python_backend --render-toc > docs/source/api.md",
+        "cwd": "./python-backend"
+      }
+    },
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "poetry lock --no-update",
+        "cwd": "./python-backend"
+      }
+    },
+    "add": {
+      "executor": "@nxlv/python:add",
+      "options": {}
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "build": {
+      "executor": "@nxlv/python:build",
+      "outputs": ["{projectRoot}/dist"],
+      "options": {
+        "outputPath": "./python-backend/dist",
+        "publish": true,
+        "lockedVersions": true,
+        "bundleLocalDependencies": true
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "silent": false,
+        "args": "",
+        "cacheDir": ".cache/pypoetry",
+        "verbose": false,
+        "debug": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "outputs": ["{workspaceRoot}/reports/./python-backend/pylint.txt"],
+      "options": {
+        "outputFile": "reports/./python-backend/pylint.txt"
+      }
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/./python-backend/unittests",
+        "{workspaceRoot}/coverage/./python-backend"
+      ],
+      "options": {
+        "command": "poetry run pytest tests/",
+        "cwd": "./python-backend"
+      }
+    },
+    "tox": {
+      "executor": "@nxlv/python:tox",
+      "outputs": [
+        "{workspaceRoot}/reports/./python-backend/unittests",
+        "{workspaceRoot}/coverage/./python-backend"
+      ],
+      "options": {
+        "silent": false,
+        "args": ""
+      }
+    }
+  },
+  "tags": []
+}

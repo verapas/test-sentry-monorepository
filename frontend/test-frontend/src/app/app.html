@@ -1,2 +1,7 @@
-<app-nx-welcome></app-nx-welcome>
 <router-outlet></router-outlet>
+
+<div style="padding: 1rem; position: relative; z-index: 10">
+  <button (click)="throwTestError()" style="margin-right: .5rem">Throw Unhandled Error</button>
+  <button (click)="sendHandledError()">Capture Handled Error</button>
+  <p style="margin-top:.5rem">Unhandled wirft einen Fehler (App kann kurz crashen). Handled sendet nur an Sentry.</p>
+</div>
